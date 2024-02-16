@@ -119,6 +119,7 @@ public class MyArray implements Cloneable {
         }
         return true;
     }
+
     @Override
     public MyArray clone() {
         return new MyArray(array);
@@ -128,26 +129,27 @@ public class MyArray implements Cloneable {
         return "The array is " + Arrays.toString(Arrays.copyOfRange(array, 0, getSize()));
     }
 
-    public void sortSimple(){
+    public void sortSimple() {
         int[] arraySort = new int[getSize()];
-        for (int i = 0; i < arraySort.length; i++){
+        for (int i = 0; i < arraySort.length; i++) {
             arraySort[i] = getMin();
             array[indexOf(getMin())] = Integer.MAX_VALUE;
         }
         array = arraySort;
     }
 
-    public void sortSelect(){
-        for (int i = 0; i < getSize(); i++){
+    public void sortSelect() {
+        for (int i = 0; i < getSize(); i++) {
             int index = getIndexOfMin(i);
             int temp = array[i];
             array[i] = array[index];
             array[index] = temp;
         }
     }
-    public int getMin(){
+
+    public int getMin() {
         int min = array[0];
-        for (int i = 0; i < getSize(); i++){
+        for (int i = 0; i < getSize(); i++) {
             if (array[i] < min) {
                 min = array[i];
             }
@@ -155,23 +157,21 @@ public class MyArray implements Cloneable {
         return min;
     }
 
-    public int getIndexOfMin(int i){
-        int min = array[i];
+    public int getIndexOfMin(int i) {
         int minIndex = i;
-        for (; i < getSize(); i++){
-            if (array[i] < min) {
-                min = array[i];
-                minIndex = i;
+        for (; i < getSize(); i++) {
+            if (array[i] < array[minIndex]) {
+                    minIndex = i;
+                }
             }
+            return minIndex;
         }
-        return minIndex;
-    }
 
-    public int indexOf(int value){
-        for (int i = 0; i < getSize(); i++){
-            if (array[i] == value) return i;
+        public int indexOf ( int value){
+            for (int i = 0; i < getSize(); i++) {
+                if (array[i] == value) return i;
+            }
+            return -1;
         }
-        return -1;
-    }
 
-}
+    }
