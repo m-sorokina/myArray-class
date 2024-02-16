@@ -119,8 +119,6 @@ public class MyArray implements Cloneable {
         }
         return true;
     }
-
-
     @Override
     public MyArray clone() {
         return new MyArray(array);
@@ -128,6 +126,51 @@ public class MyArray implements Cloneable {
 
     public String toString() {
         return "The array is " + Arrays.toString(Arrays.copyOfRange(array, 0, getSize()));
+    }
+
+    public void sortSimple(){
+        int[] arraySort = new int[getSize()];
+        for (int i = 0; i < arraySort.length; i++){
+            arraySort[i] = getMin();
+            array[indexOf(getMin())] = Integer.MAX_VALUE;
+        }
+        array = arraySort;
+    }
+
+    public void sortSelect(){
+        for (int i = 0; i < getSize(); i++){
+            int index = indexOf(getMin(i));
+            int temp = array[i];
+            array[i] = array[index];
+            array[index] = temp;
+            System.out.println(this);
+        }
+    }
+    public int getMin(){
+        int min = array[0];
+        for (int i = 0; i < getSize(); i++){
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    public int getMin(int i){
+        int min = array[i];
+        for (; i < getSize(); i++){
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    public int indexOf(int value){
+        for (int i = 0; i < getSize(); i++){
+            if (array[i] == value) return i;
+        }
+        return -1;
     }
 
 }

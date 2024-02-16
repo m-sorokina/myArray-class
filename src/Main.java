@@ -9,6 +9,7 @@ public class Main {
         MyArray myArray2 = new MyArray(new int[] {5, 4, 3, 2, 1});
         MyArray myArray3 = new MyArray(15);
         MyArray myArray4 = myArray.clone();
+        MyArray myArray5 = new MyArray(new int[] {10, 11, 5, 6, 0, 5, 19, 3, 28, 21});
 
         int[] arraySimple = {5, 4, 3, 2, 1};
 
@@ -36,6 +37,18 @@ public class Main {
 
         myArray.resize(20);
         printArray(myArray);
+
+        myArray3.sortSimple();
+        printArray(myArray3);
+
+//        myArray5.sortSimple();
+//        printArray(myArray5);
+//
+//        myArray3.sortSelect();
+//        printArray(myArray3);
+//
+        myArray5.sortSelect();
+        printArray(myArray5);
 
     }
 
