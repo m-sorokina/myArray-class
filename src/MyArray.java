@@ -139,11 +139,10 @@ public class MyArray implements Cloneable {
 
     public void sortSelect(){
         for (int i = 0; i < getSize(); i++){
-            int index = indexOf(getMin(i));
+            int index = getIndexOfMin(i);
             int temp = array[i];
             array[i] = array[index];
             array[index] = temp;
-            System.out.println(this);
         }
     }
     public int getMin(){
@@ -156,14 +155,16 @@ public class MyArray implements Cloneable {
         return min;
     }
 
-    public int getMin(int i){
+    public int getIndexOfMin(int i){
         int min = array[i];
+        int minIndex = i;
         for (; i < getSize(); i++){
             if (array[i] < min) {
                 min = array[i];
+                minIndex = i;
             }
         }
-        return min;
+        return minIndex;
     }
 
     public int indexOf(int value){
