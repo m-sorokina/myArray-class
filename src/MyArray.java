@@ -1,12 +1,17 @@
 import java.util.Arrays;
 
-public class MyArray implements Cloneable{
+public class MyArray implements Cloneable {
     private int[] array;
 
-//    private int size;
+    private int size;
+
+    public MyArray() {
+        this(0);
+    }
 
     public MyArray(int size) {
         array = new int[size];
+        this.size = size;
     }
 
     public MyArray(int[] array) {
@@ -14,11 +19,15 @@ public class MyArray implements Cloneable{
         for (int i = 0; i < array.length; i++) {
             this.array[i] = array[i];
         }
+        this.size = array.length;
     }
 
-
     public int getSize() {
-        return array.length;
+        return size;
+    }
+
+    private void setSize(int value) {
+        size = value;
     }
 
     public void set(int i, int value) {
@@ -38,7 +47,7 @@ public class MyArray implements Cloneable{
     }
 
     private boolean ifIndexExists(int i) {
-        return i >= 0 && i < array.length;
+        return i >= 0 && i < getSize();
     }
 
     public void fill() {
@@ -49,15 +58,27 @@ public class MyArray implements Cloneable{
 
     public void resize(int size) {
         int[] array2 = new int[size];
-        int newLength = (size < array.length) ? size : array.length;
+        int newLength = (size < getSize()) ? size : getSize();
         for (int i = 0; i < newLength; i++) {
             array2[i] = array[i];
         }
-        this.array = array2;
+        array = array2;
+        setSize(size);
+    }
+
+    private void checkDoubleSize() {
+        if (getSize() == array.length) {
+            int[] array2 = new int[getSize() * 2];
+            for (int i = 0; i < array.length; i++) {
+                array2[i] = array[i];
+            }
+            array = array2;
+        }
+        setSize(getSize() + 1);
     }
 
     public void addLast(int value) {
-        resize(getSize() + 1);
+        checkDoubleSize();
         array[getSize() - 1] = value;
     }
 
@@ -66,34 +87,34 @@ public class MyArray implements Cloneable{
             System.out.println("Index is out of bounds");
             return;
         }
-        resize(getSize() + 1);
+        checkDoubleSize();
         for (int i = getSize() - 1; i > index; i--) {
             array[i] = array[i - 1];
         }
         array[index] = value;
- }
+    }
 
     public void remove(int index) {
         if (!ifIndexExists(index)) {
             System.out.println("Index is out of bounds");
             return;
         }
-       for (int i = index; i < getSize() - 1; i++) {
+        for (int i = index; i < getSize() - 1; i++) {
             array[i] = array[i + 1];
         }
-        resize(getSize() - 1);
+        setSize(getSize() - 1);
 
     }
 
-    public boolean equals(MyArray array){
+    public boolean equals(MyArray array) {
         if (array == null) return false;
         return this.equals(array.array);
     }
 
-    public boolean equals(int[] array){
+    public boolean equals(int[] array) {
         if (array == null) return false;
         if (array.length != getSize()) return false;
-        for (int i = 0; i < getSize(); i++){
+        for (int i = 0; i < getSize(); i++) {
             if (array[i] != get(i)) return false;
         }
         return true;
@@ -102,12 +123,11 @@ public class MyArray implements Cloneable{
 
     @Override
     public MyArray clone() {
-       return new MyArray(array);
+        return new MyArray(array);
     }
 
     public String toString() {
-        return "The array is " + Arrays.toString(array);
+        return "The array is " + Arrays.toString(Arrays.copyOfRange(array, 0, getSize()));
     }
-
 
 }
