@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +15,7 @@ public class Main {
         MyArray myArray6 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
         MyArray myArray7 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
         MyArray myArray8 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
+        MyArray myArray9 = new MyArray(new int[] {10, 11, 5, 6, 19, 21, 36, 5, 19, 0, 3, 28, 21});
 
         int[] arraySimple = {5, 4, 3, 2, 1, 1, 25, 43, 29};
 
@@ -61,7 +64,7 @@ public class Main {
         myArray8.sortBubble();
         printArray(myArray8);
 
-        int value = 28;
+        int value = 0;
         int index = myArray8.binarySearch(value);
         if (index == -1){
             System.out.println("Index was not found");
@@ -69,10 +72,12 @@ public class Main {
             System.out.println(index);
         }
 
-
-
-
-
+        List<Integer> arrayIndex = myArray9.indexSearch(value);
+        if (arrayIndex.isEmpty()){
+            System.out.println("Index was not found");
+        } else {
+            System.out.println(arrayIndex);
+        }
     }
 
     public static void printArray(MyArray myArray){

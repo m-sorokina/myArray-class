@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MyArray implements Cloneable {
     private int[] array;
@@ -198,6 +200,16 @@ public class MyArray implements Cloneable {
             middle = (first + last) / 2;
         }
         return -1;
+    }
+
+    public List<Integer> indexSearch(int value){
+        List <Integer> indexArray = new ArrayList<>();
+        for (int i = 0; i < getSize(); i++){
+            if (array[i] == value){
+                indexArray.add(i);
+            }
+        }
+        return indexArray;
     }
 
     public int indexOf(int value) {
