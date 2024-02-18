@@ -147,6 +147,49 @@ public class MyArray implements Cloneable {
         }
     }
 
+    public void sortSimpleR(int i) {
+        if (i < getSize() - 1){
+            int index = getIndexOfMin(i);
+            int temp = array[i];
+            array[i] = array[index];
+            array[index] = temp;
+            sortSimpleR(++i);
+        }
+    }
+
+    public void sortInsert(){
+        for (int i = 1; i < getSize(); i++){
+            for (int j = i; j > 0 && array[j] < array[j - 1]; j--){
+                    int temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+            }
+        }
+    }
+
+    public void sortBubble(){
+        boolean unsorted = true;
+        for (int i = 0; i < getSize() - 1 && unsorted; i++){
+            unsorted = false;
+            for (int j = getSize() - 1; j > i; j--){
+              if (array[j] < array[j - 1]) {
+                  int temp = array[j - 1];
+                  array[j - 1] = array[j];
+                  array[j] = temp;
+                  unsorted = true;
+              }
+            }
+        }
+    }
+
+
+    public int indexOf(int value) {
+        for (int i = 0; i < getSize(); i++) {
+            if (array[i] == value) return i;
+        }
+        return -1;
+    }
+
     public int getMin() {
         int min = array[0];
         for (int i = 0; i < getSize(); i++) {
@@ -161,17 +204,10 @@ public class MyArray implements Cloneable {
         int minIndex = i;
         for (; i < getSize(); i++) {
             if (array[i] < array[minIndex]) {
-                    minIndex = i;
-                }
+                minIndex = i;
             }
-            return minIndex;
         }
-
-        public int indexOf ( int value){
-            for (int i = 0; i < getSize(); i++) {
-                if (array[i] == value) return i;
-            }
-            return -1;
-        }
-
+        return minIndex;
     }
+
+}

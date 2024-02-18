@@ -10,8 +10,11 @@ public class Main {
         MyArray myArray3 = new MyArray(15);
         MyArray myArray4 = myArray.clone();
         MyArray myArray5 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
+        MyArray myArray6 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
+        MyArray myArray7 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
+        MyArray myArray8 = new MyArray(new int[] {10, 11, 5, 6, 0, 21, 36, 5, 19, 19, 3, 28, 21});
 
-        int[] arraySimple = {5, 4, 3, 2, 1};
+        int[] arraySimple = {5, 4, 3, 2, 1, 1, 25, 43, 29};
 
         for(int i = 0; i < myArray2.getSize(); i++){
             myArray3.addLast(myArray2.get(i));
@@ -42,14 +45,25 @@ public class Main {
         printArray(myArray3);
 
 //        myArray5.sortSimple();
-//        printArray(myArray5);
-//
-        myArray3.sortSelect();
-        printArray(myArray3);
-
         printArray(myArray5);
         myArray5.sortSelect();
         printArray(myArray5);
+
+        printArray(myArray6);
+        myArray6.sortSimpleR(0);
+        printArray(myArray6);
+
+        printArray(myArray7);
+        myArray7.sortInsert();
+        printArray(myArray7);
+
+        printArray(myArray8);
+        myArray8.sortBubble();
+        printArray(myArray8);
+
+
+
+
 
     }
 
