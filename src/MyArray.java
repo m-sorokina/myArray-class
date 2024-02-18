@@ -148,7 +148,7 @@ public class MyArray implements Cloneable {
     }
 
     public void sortSimpleR(int i) {
-        if (i < getSize() - 1){
+        if (i < getSize() - 1) {
             int index = getIndexOfMin(i);
             int temp = array[i];
             array[i] = array[index];
@@ -157,31 +157,48 @@ public class MyArray implements Cloneable {
         }
     }
 
-    public void sortInsert(){
-        for (int i = 1; i < getSize(); i++){
-            for (int j = i; j > 0 && array[j] < array[j - 1]; j--){
+    public void sortInsert() {
+        for (int i = 1; i < getSize(); i++) {
+            for (int j = i; j > 0 && array[j] < array[j - 1]; j--) {
+                int temp = array[j - 1];
+                array[j - 1] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+
+    public void sortBubble() {
+        boolean unsorted = true;
+        for (int i = 0; i < getSize() - 1 && unsorted; i++) {
+            unsorted = false;
+            for (int j = getSize() - 1; j > i; j--) {
+                if (array[j] < array[j - 1]) {
                     int temp = array[j - 1];
                     array[j - 1] = array[j];
                     array[j] = temp;
+                    unsorted = true;
+                }
             }
         }
     }
 
-    public void sortBubble(){
-        boolean unsorted = true;
-        for (int i = 0; i < getSize() - 1 && unsorted; i++){
-            unsorted = false;
-            for (int j = getSize() - 1; j > i; j--){
-              if (array[j] < array[j - 1]) {
-                  int temp = array[j - 1];
-                  array[j - 1] = array[j];
-                  array[j] = temp;
-                  unsorted = true;
-              }
+    public int binarySearch(int value) {
+        int first = 0;
+        int last = getSize() - 1;
+        int middle = (first + last) / 2;
+        while (first <= last) {
+            if (array[middle] == value) {
+                return middle;
             }
+            if (array[middle] < value) {
+                first = middle + 1;
+            } else {
+                last = middle - 1;
+            }
+            middle = (first + last) / 2;
         }
+        return -1;
     }
-
 
     public int indexOf(int value) {
         for (int i = 0; i < getSize(); i++) {

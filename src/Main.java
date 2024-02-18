@@ -61,6 +61,14 @@ public class Main {
         myArray8.sortBubble();
         printArray(myArray8);
 
+        int value = 28;
+        int index = myArray8.binarySearch(value);
+        if (index == -1){
+            System.out.println("Index was not found");
+        } else {
+            System.out.println(index);
+        }
+
 
 
 
