@@ -49,6 +49,7 @@ public class MyArray implements Cloneable {
     }
 
     private boolean ifIndexExists(int i) {
+
         return i >= 0 && i < getSize();
     }
 
@@ -59,6 +60,9 @@ public class MyArray implements Cloneable {
     }
 
     public void resize(int size) {
+        if (size < 0){
+            throw new IllegalArgumentException("Size cannot be negative");
+        }
         int[] array2 = new int[size];
         int newLength = (size < getSize()) ? size : getSize();
         for (int i = 0; i < newLength; i++) {
@@ -128,7 +132,7 @@ public class MyArray implements Cloneable {
     }
 
     public String toString() {
-        return "The array is " + Arrays.toString(Arrays.copyOfRange(array, 0, getSize()));
+        return Arrays.toString(Arrays.copyOfRange(array, 0, getSize()));
     }
 
     public void sortSimple() {
@@ -202,10 +206,10 @@ public class MyArray implements Cloneable {
         return -1;
     }
 
-    public List<Integer> indexSearch(int value){
-        List <Integer> indexArray = new ArrayList<>();
-        for (int i = 0; i < getSize(); i++){
-            if (array[i] == value){
+    public List<Integer> indexSearch(int value) {
+        List<Integer> indexArray = new ArrayList<>();
+        for (int i = 0; i < getSize(); i++) {
+            if (array[i] == value) {
                 indexArray.add(i);
             }
         }
@@ -237,6 +241,37 @@ public class MyArray implements Cloneable {
             }
         }
         return minIndex;
+    }
+
+    public MyArray copyOf(int length) {
+        return new MyArray(Arrays.copyOf(array, length));
+    }
+
+    public MyArray copyOf(int from, int to) {
+        return new MyArray(Arrays.copyOfRange(array, from, to));
+    }
+
+    public void sort(boolean byDesc){
+        Arrays.sort(array);
+        if (byDesc) {
+            this.reverse();
+        }
+    }
+
+    public void reverse(){
+        for (int i = 0; i < getSize()/2; i++){
+            int temp = array[i];
+            array[i] = array[getSize() - 1 - i];
+            array[getSize() - 1 - i] = temp;
+        }
+    }
+
+    public int[] toArray() {
+        int[] newArray = new int[getSize()];
+        for (int i = 0; i < getSize(); i++) {
+            newArray[i] = get(i);
+        }
+        return newArray;
     }
 
 }
